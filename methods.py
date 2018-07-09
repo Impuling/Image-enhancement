@@ -47,10 +47,10 @@ imArr = np.asarray(img)
 pix = img.load() # выгрузка значений пикселов
 coef = input("Resize coefficient: ")
 coef = float(coef)
-# newShape = list(map(int, [imArr.shape[0]*coef, imArr.shape[1]*coef]))
-# resultImg = np.empty(newShape, dtype = np.uint8)
-# rowScale = float(imArr.shape[0]) / float(resultImg.shape[0])
-# colScale = float(imArr.shape[1]) / float(resultImg.shape[1])
+newShape = list(map(int, [imArr.shape[0]*coef, imArr.shape[1]*coef]))
+resultImg = np.empty(newShape, dtype = np.uint8)
+rowScale = float(imArr.shape[0]) / float(resultImg.shape[0])
+colScale = float(imArr.shape[1]) / float(resultImg.shape[1])
 
 methods = {'1': 'K nearest neighborg', '2': 'Bilinear interpolation'}
 for method in methods:
@@ -61,11 +61,6 @@ if key in methods:
 		if key == '1':
 			k = input("Enter k: ")
 			k = int(k)
-			newShape = list(map(int, [imArr.shape[0]*coef, imArr.shape[1]*coef]))
-			resultImg = np.empty(newShape, dtype = np.uint8)
-			rowScale = float(imArr.shape[0]) / float(resultImg.shape[0])
-			colScale = float(imArr.shape[1]) / float(resultImg.shape[1])
-
 			for r in range(resultImg.shape[0]):
 				for c in range(resultImg.shape[1]):
 					old_r = r * rowScale # координата в начальном изображении
@@ -76,11 +71,6 @@ if key in methods:
 			plt.show()
 
 		elif key == '2':
-			newShape = list(map(int, [imArr.shape[0]*coef, imArr.shape[1]*coef]))
-			resultImg = np.empty(newShape, dtype = np.uint8)
-			rowScale = float(imArr.shape[0]) / float(resultImg.shape[0])
-			colScale = float(imArr.shape[1]) / float(resultImg.shape[1])
-
 			for r in range(resultImg.shape[0]):
 				for c in range(resultImg.shape[1]):
 					old_r = r * rowScale
